@@ -1,0 +1,17 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# Temps
+.tmp
+.bak
+
+# My Files
+create_db.py
+data/user.csv
+docs/
+src/beta.py
+test/
