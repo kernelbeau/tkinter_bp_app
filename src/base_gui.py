@@ -3,11 +3,13 @@
 from tkinter import Tk, Menu, Frame, Label, \
     LabelFrame, PhotoImage
 from tkinter.messagebox import askokcancel, showinfo
+from webbrowser import open_new_tab
 
-ABOUT = "Version: 0.0.1\nDate: 2019"
-BG = 'wheat'  # background color
 WIDTH = 960
 HEIGHT = 540
+ABOUT = "Version: 0.0.1\nDate: 2019"
+BG = 'wheat'  # background color
+HELP_PAGE = 'https://github.com/leeurbanek/tkinter_bp_app'
 PROG_TITLE = "Blood Pressure Tracker"
 
 
@@ -77,7 +79,7 @@ class BaseGUI:
 
         # create the top frames
         logo_frame = Frame(
-            top_cont, width=WIDTH*(1/4), height=HEIGHT*(1/3)
+            top_cont, width=WIDTH*(1/4), height=HEIGHT*(1/5)
             )
         logo_img = PhotoImage(file='img/bp_cuff.gif')
         logo = Label(logo_frame, bg=BG, image=logo_img)
@@ -99,7 +101,7 @@ class BaseGUI:
             width=WIDTH*(2/3), height=HEIGHT*(4/5)
             )
         self.stats_frame = LabelFrame(
-            btm_cont, bg='cyan', text=' Stats ', padx=6,
+            btm_cont, bg=BG, text=' Stats ', padx=6,
             width=WIDTH*(1/3), height=HEIGHT*(4/5)
             )
         # layout the bottom frames
@@ -125,4 +127,4 @@ class BaseGUI:
             detail="Click 'OK' to go to the documentation site "
                     "where the help pages are maintained."
                     ):
-            print("\nRedirect to Online Docs\n")
+            open_new_tab(HELP_PAGE)

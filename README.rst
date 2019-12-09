@@ -4,7 +4,7 @@ Blood Pressure
 
 Description
 -----------
-Track blood pressure history
+Track blood pressure readings
 
 Features
 ~~~~~~~~
@@ -13,7 +13,6 @@ Features
 
 Authors
 -------
-Lee Urbanek, 2019
 
 Requirements
 ------------

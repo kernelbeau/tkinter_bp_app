@@ -45,8 +45,7 @@ class AppCtrl:
 
     def calculate_stats(self):
         """Return a dictionary of tuples.
-        Min/Max, average, latest reading for systolic,
-        diastolic, pulse, and pulse pressure.
+        Current, average, min, and max.
         """
         def _get_difference(hi, lo):
             dif = list()
@@ -54,24 +53,18 @@ class AppCtrl:
                 dif.append(hi[i] - lo[i])
             return dif
 
-        def _get_min_max(data):
-            return (min(data), max(data))
-
         def _get_average(data):
             return round(sum(data) / len(data))
 
         _, systolic, diastolic, pulse = self.data
         pulse_pres = _get_difference(systolic, diastolic)
 
-        stat = dict()
-        key = ["systolic", "diastolic", "pulse", "pulse_pressure"]
+        stat_dict = dict()
+        key = ["Systolic", "Diastolic", "Pulse", "Pulse Pressure"]
         for k, v in enumerate([systolic, diastolic, pulse, pulse_pres]):
-            min_max = _get_min_max(v)
             avg = _get_average(v)
-            stat[key[k]] = (
-                min_max, avg, v[-1],
-                )
-        return stat
+            stat_dict[key[k]] = (v[-1], avg, min(v), max(v))
+        return stat_dict
 
     def start(self):
         """Load app with saved data, start GUI mainloop.

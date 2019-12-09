@@ -1,5 +1,6 @@
 """Tkinter GUI access point.
 """
+from tkinter import Label
 from matplotlib.backends.backend_tkagg \
     import FigureCanvasTkAgg
 from matplotlib.figure import Figure
@@ -45,8 +46,29 @@ class MainView(BaseGUI):
             fill='both', expand=True)
 
     def fill_stats_frame(self, stats):
-        """TODO: docstring."""
-        print(stats)
+        """Takes a dictionary of tuples.
+        Tuple contains current, average, min, max.
+        """
+        stats_frame = self.get_stats_frame()
+        stats_frame.pack(fill='both', padx=6, pady=[0, 6])
+        reading = ["Systolic", "Diastolic", "Pulse", "Pulse Pressure"]
+        stat_dict = ["Current:", "Average:", "Min/Max:"]
+        row = 0
+        for i in reading:
+            label = Label(stats_frame, text=i, bg=BG)
+            label.grid(
+                row=row, column=0, padx=9, pady=[6, 0], sticky='nsw')
+            row += 1
+            for j, stat in enumerate(stat_dict):
+                label = Label(stats_frame, text=stat, bg=BG)
+                label.grid(row=row, column=1, sticky='nse')
+                data = Label(stats_frame, text=stats[i][j], bg=BG)
+                if stat == 'Min/Max:':
+                    data = Label(
+                        stats_frame,
+                        text=f"{stats[i][j]}/{stats[i][j+1]}", bg=BG)
+                data.grid(row=row, column=2, sticky='ns')
+                row += 1
 
     def __repr__(self):
         return f"<class '{self.__class__.__name__}'"
